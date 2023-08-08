@@ -4,14 +4,17 @@
 // in the array
 
 const maxSubarraySum = (arr, n) => {
-  let max = null;
+  if (n > arr.length) return null;
+
+  let max = -Infinity;
   for (let i = 0; i+n <= arr.length; i++) {
-    let count = 0;
+    let sum = 0;
     for (let j = 0; j < n; j++) {
-      count += arr[i + j];
+      sum += arr[i + j];
     }
-    if (max === null || count > max) max = count;
+    if (sum > max) max = sum;
   }
+
   return max;
 };
 
