@@ -4,13 +4,15 @@
 // in the array
 
 const maxSubarraySum = (arr, n) => {
-  // pseudocode
-  // [1,2,5,2,8,1,5], 4
-  // use a sliding window
-  // keep track of max
-  // look at i -> i+n elements until i+n > length
-  // compare to max
-  // if greater, set new max
+  let max = null;
+  for (let i = 0; i+n <= arr.length; i++) {
+    let count = 0;
+    for (let j = 0; j < n; j++) {
+      count += arr[i + j];
+    }
+    if (max === null || count > max) max = count;
+  }
+  return max;
 };
 
 module.exports = maxSubarraySum;
