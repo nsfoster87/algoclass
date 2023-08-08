@@ -6,13 +6,15 @@
 const maxSubarraySum = (arr, n) => {
   if (n > arr.length) return null;
 
-  let max = -Infinity;
-  for (let i = 0; i+n <= arr.length; i++) {
-    let sum = 0;
-    for (let j = 0; j < n; j++) {
-      sum += arr[i + j];
-    }
-    if (sum > max) max = sum;
+  let currentSum = 0;
+  for (let i = 0; i < n; i++) {
+    currentSum += arr[i];
+  }
+  let max = currentSum;
+
+  for (let i = 1; i+n <= arr.length; i++) {
+    currentSum = currentSum - arr[i-1] + arr[i+n-1];
+    if (currentSum > max) max = currentSum;
   }
 
   return max;
